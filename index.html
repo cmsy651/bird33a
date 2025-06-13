@@ -14,61 +14,83 @@
         
         body { 
             font-family: 'Comic Sans MS', cursive, -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(45deg, #ff9a56, #ffd93d, #6bcf7f, #4d9de0, #e15759);
-            background-size: 300% 300%;
-            animation: gradientShift 8s ease infinite;
+            background: linear-gradient(135deg, #ff9a56 0%, #4ecdc4 50%, #ffd93d 100%);
             min-height: 100vh;
             padding: 20px;
         }
         
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
         .menu-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             background: #fff;
             border-radius: 25px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             overflow: hidden;
-            position: relative;
+            border: 8px solid #ff6b6b;
         }
         
         .menu-header {
             background: linear-gradient(135deg, #ff6b6b, #ff9a56);
             padding: 30px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             position: relative;
-            overflow: hidden;
         }
         
         .menu-header::before {
             content: '';
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: repeating-linear-gradient(
                 45deg,
-                #ff6b6b 0px,
-                #ff6b6b 10px,
-                #ff9a56 10px,
-                #ff9a56 20px
+                rgba(255,255,255,0.1) 0px,
+                rgba(255,255,255,0.1) 20px,
+                transparent 20px,
+                transparent 40px
             );
-            z-index: -1;
+        }
+        
+        .menu-left {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .menu-title {
+            font-size: 4em;
+            color: #fff;
+            text-shadow: 4px 4px 0px #ff4757;
+            font-weight: bold;
+            margin-bottom: 10px;
+            transform: rotate(-3deg);
+            letter-spacing: 2px;
+        }
+        
+        .menu-subtitle {
+            font-size: 1.8em;
+            color: #fff;
+            background: rgba(255,255,255,0.3);
+            padding: 12px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            transform: rotate(1deg);
+        }
+        
+        .character-container {
+            position: relative;
+            z-index: 1;
         }
         
         .character-gif {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 20px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            border: 5px solid #fff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border: 8px solid #fff;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
             overflow: hidden;
             animation: bounce 2s ease-in-out infinite;
         }
@@ -81,339 +103,328 @@
         
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        
-        .menu-title {
-            font-size: 3em;
-            color: #fff;
-            text-shadow: 3px 3px 0px #ff4757;
-            font-weight: bold;
-            margin-bottom: 10px;
-            transform: rotate(-2deg);
-        }
-        
-        .menu-subtitle {
-            font-size: 1.3em;
-            color: #fff;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 16px;
-            border-radius: 20px;
-            display: inline-block;
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-8px); }
         }
         
         .menu-content {
-            padding: 40px;
-            background: #fff;
-            position: relative;
-        }
-        
-        .menu-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20px 20px, #ff6b6b 2px, transparent 2px),
-                radial-gradient(circle at 80px 80px, #4ecdc4 2px, transparent 2px),
-                radial-gradient(circle at 120px 40px, #ffd93d 2px, transparent 2px);
-            background-size: 100px 100px, 100px 100px, 100px 100px;
-            opacity: 0.1;
-            z-index: 0;
+            padding: 50px 40px;
+            background: linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%), 
+                        linear-gradient(45deg, #fff 25%, #f8f9fa 25%, #f8f9fa 75%, #fff 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
         }
         
         .intro-text {
             text-align: center;
-            font-size: 1.2em;
+            font-size: 1.6em;
             color: #333;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             font-weight: bold;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .menu-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .menu-item {
-            background: linear-gradient(135deg, #ff6b6b, #ff9a56);
-            border-radius: 20px;
+            background: rgba(255,255,255,0.9);
             padding: 20px;
-            text-align: center;
-            transform: rotate(-1deg);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 20px;
+            border: 4px dashed #ff6b6b;
+        }
+        
+        .menu-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-section {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border: 4px solid #ff9a56;
             position: relative;
             overflow: hidden;
         }
         
-        .menu-item:nth-child(even) {
+        .menu-section::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ff6b6b, #ff9a56, #4ecdc4, #ffd93d);
+            z-index: -1;
+            border-radius: 25px;
+        }
+        
+        .section-title {
+            font-size: 2.2em;
+            color: #ff6b6b;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-shadow: 2px 2px 0px #fff;
+            transform: rotate(-2deg);
+            background: linear-gradient(135deg, #ffd93d, #ff9a56);
+            padding: 15px;
+            border-radius: 15px;
+            border: 3px solid #ff6b6b;
+        }
+        
+        .menu-items {
+            list-style: none;
+        }
+        
+        .menu-item {
+            margin-bottom: 20px;
             background: linear-gradient(135deg, #4ecdc4, #6bcf7f);
+            border-radius: 15px;
+            padding: 20px;
+            transform: rotate(-1deg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border: 3px solid #fff;
+        }
+        
+        .menu-item:nth-child(even) {
+            background: linear-gradient(135deg, #ff9a56, #ffd93d);
             transform: rotate(1deg);
         }
         
         .menu-item:nth-child(3n) {
-            background: linear-gradient(135deg, #ffd93d, #ff9a56);
+            background: linear-gradient(135deg, #ff6b6b, #ff9a56);
             transform: rotate(-0.5deg);
-        }
-        
-        .menu-item::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
-            animation: sparkle 4s linear infinite;
-            opacity: 0;
-        }
-        
-        .menu-item:hover::before {
-            opacity: 1;
-        }
-        
-        @keyframes sparkle {
-            0%, 100% { transform: rotate(0deg) scale(0); opacity: 0; }
-            50% { transform: rotate(180deg) scale(1); opacity: 1; }
         }
         
         .menu-item:hover {
             transform: rotate(0deg) scale(1.05);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
         
         .menu-item a {
             color: #fff;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.1em;
-            display: block;
-            position: relative;
-            z-index: 1;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
         }
         
-        .menu-item:nth-child(3n) a {
+        .menu-item:nth-child(even) a {
             color: #333;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.8);
         }
         
         .menu-emoji {
             font-size: 2em;
-            display: block;
-            margin-bottom: 10px;
-            animation: wiggle 2s ease-in-out infinite;
+            margin-right: 15px;
+            animation: wiggle 3s ease-in-out infinite;
         }
         
         @keyframes wiggle {
             0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-5deg); }
-            75% { transform: rotate(5deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
         }
         
         .menu-footer {
             background: linear-gradient(135deg, #667eea, #764ba2);
-            padding: 30px;
+            padding: 40px;
             text-align: center;
             color: #fff;
-            font-size: 1.1em;
+            font-size: 1.3em;
+            font-weight: bold;
             position: relative;
         }
         
         .menu-footer::before {
-            content: '🌟 ✨ 🎨 ✨ 🌟';
+            content: '🌟 ✨ 🎨 🎵 📸 ✨ 🌟';
             position: absolute;
-            top: 10px;
+            top: 15px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 1.5em;
+            font-size: 1.8em;
+            animation: sparkle 2s ease-in-out infinite;
         }
         
-        .decorative-elements {
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .menu-title {
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
+            
+            .character-gif {
+                width: 150px;
+                height: 150px;
+                margin-top: 20px;
+            }
+            
+            .menu-sections {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-content {
+                padding: 30px 20px;
+            }
+        }
+        
+        .decorative-circles {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
+            top: 0;
+            left: 0;
             pointer-events: none;
             z-index: 0;
         }
         
-        .floating-emoji {
+        .circle {
             position: absolute;
-            font-size: 2em;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
             animation: float 6s ease-in-out infinite;
         }
         
+        .circle:nth-child(1) { width: 60px; height: 60px; top: 10%; left: 10%; animation-delay: 0s; }
+        .circle:nth-child(2) { width: 80px; height: 80px; top: 60%; right: 15%; animation-delay: 2s; }
+        .circle:nth-child(3) { width: 40px; height: 40px; bottom: 20%; left: 20%; animation-delay: 4s; }
+        
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .floating-emoji:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-        .floating-emoji:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
-        .floating-emoji:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
-        .floating-emoji:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 1s; }
-        
-        @media (max-width: 768px) {
-            .menu-items {
-                grid-template-columns: 1fr;
-            }
-            
-            .menu-title {
-                font-size: 2em;
-            }
-            
-            .character-gif {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .menu-content {
-                padding: 20px;
-            }
-        }
-        
-        .menu-border {
-            border: 8px solid #ff6b6b;
-            border-radius: 25px;
-            margin: 10px;
+            50% { transform: translateY(-30px); }
         }
     </style>
 </head>
 <body>
-    <div class="menu-border">
-        <div class="menu-container">
-            <div class="decorative-elements">
-                <div class="floating-emoji">🍔</div>
-                <div class="floating-emoji">🎵</div>
-                <div class="floating-emoji">🎨</div>
-                <div class="floating-emoji">✨</div>
+    <div class="menu-container">
+        <div class="decorative-circles">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        
+        <div class="menu-header">
+            <div class="menu-left">
+                <h1 class="menu-title">BIRD33A</h1>
+                <p class="menu-subtitle">數位美食菜單</p>
             </div>
-            
-            <div class="menu-header">
+            <div class="character-container">
                 <div class="character-gif">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjRkZGIiBzdHJva2U9IiNGRjlBNTYiIHN0cm9rZS13aWR0aD0iMyIgcng9IjE1Ii8+Cjx0ZXh0IHg9Ijc1IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSIjRkY2QjZCIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7mgqjnmoTlj6/mjZFHSUbmspnlnJjlsIfkvY7pgYroo6I8L3RleHQ+Cjwvc3ZnPgo=" alt="可愛角色動圖">
+                    <img src="https://pic.pimg.tw/bird33a/1749785376-2398436167-g.gif" alt="可愛小胖子">
                 </div>
-                <h1 class="menu-title">bird33a 美食菜單</h1>
-                <p class="menu-subtitle">數位世界的美味連結</p>
+            </div>
+        </div>
+        
+        <div class="menu-content">
+            <div class="intro-text">
+                🍽️ 歡迎來到我的數位餐廳！每一道菜都是精心調製的創意料理 🍽️
             </div>
             
-            <div class="menu-content">
-                <div class="intro-text">
-                    🍽️ 歡迎光臨我的數位餐廳！每一道菜都是精心調製的創意料理 🍽️
+            <div class="menu-sections">
+                <div class="menu-section">
+                    <h2 class="section-title">🎬 影音專區</h2>
+                    <ul class="menu-items">
+                        <li class="menu-item">
+                            <a href="https://www.youtube.com/@bird33a" target="_blank" rel="noopener noreferrer">
+                                <span class="menu-emoji">🎬</span>
+                                YouTube 影音大餐
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="https://www.ganjingworld.com/zh-TW/channel/1fji19uh1sfmWU642HPcKd2wz1350c" target="_blank" rel="noopener noreferrer">
+                                <span class="menu-emoji">🌍</span>
+                                乾淨世界特餐
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="https://www.tiktok.com/@su_xian0" target="_blank" rel="noopener noreferrer">
+                                <span class="menu-emoji">🎭</span>
+                                TikTok 短影音
+                            </a>
+                        </li>
+                    </ul>
                 </div>
                 
-                <div class="menu-items">
-                    <div class="menu-item">
-                        <a href="https://store.line.me/stickershop/author/2773269" target="_blank" rel="noopener noreferrer">
-                            <span class="menu-emoji">💬</span>
-                            Line 貼圖小食<br>
-                            <small>溫馨表情包套餐</small>
-                        </a>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <a href="https://www.youtube.com/@bird33a" target="_blank" rel="noopener noreferrer">
-                            <span class="menu-emoji">🎬</span>
-                            YouTube 影音大餐<br>
-                            <small>精彩內容無限享用</small>
-                        </a>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <a href="https://www.ganjingworld.com/zh-TW/channel/1fji19uh1sfmWU642HPcKd2wz1350c" target="_blank" rel="noopener noreferrer">
-                            <span class="menu-emoji">🌍</span>
-                            乾淨世界特餐<br>
-                            <small>純淨內容好選擇</small>
-                        </a>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <a href="https://bird33a.pixnet.net/blog" target="_blank" rel="noopener noreferrer">
-                            <span class="menu-emoji">🎵</span>
-                            音樂部落格<br>
-                            <small>旋律與文字的饗宴</small>
-                        </a>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <a href="https://www.instagram.com/camsy651" target="_blank" rel="noopener noreferrer">
-                            <span class="menu-emoji">📸</span>
-                            Instagram 視覺套餐<br>
-                            <small>美圖與生活點滴</small>
-                        </a>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <a href="https://www.tiktok.com/@su_xian0" target="_blank" rel="noopener noreferrer">
-                            <span class="menu-emoji">🎭</span>
-                            TikTok 短影音<br>
-                            <small>創意無限小點心</small>
-                        </a>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <a href="https://x.com/3dmaxcat" target="_blank" rel="noopener noreferrer">
-                            <span class="menu-emoji">🐵</span>
-                            X 猩猩特調<br>
-                            <small>3D 創作與分享</small>
-                        </a>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <a href="https://x.com/1987Yk1" target="_blank" rel="noopener noreferrer">
-                            <span class="menu-emoji">🦋</span>
-                            X 蘇仙茶點<br>
-                            <small>優雅思緒與靈感</small>
-                        </a>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <a href="https://www.pinterest.com/3dmaxcat" target="_blank" rel="noopener noreferrer">
-                            <span class="menu-emoji">📌</span>
-                            Pinterest 拼盤<br>
-                            <small>創意作品收藏館</small>
-                        </a>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <a href="https://giphy.com/bird33a" target="_blank" rel="noopener noreferrer">
-                            <span class="menu-emoji">🎬</span>
-                            Giphy 動圖屋<br>
-                            <small>趣味動畫小劇場</small>
-                        </a>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <a href="https://www.facebook.com/yk1987" target="_blank" rel="noopener noreferrer">
-                            <span class="menu-emoji">👥</span>
-                            Facebook 社群廳<br>
-                            <small>朋友圈的溫暖聚會</small>
-                        </a>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <a href="https://kusdom.com/poppeak" target="_blank" rel="noopener noreferrer">
-                            <span class="menu-emoji">🛍️</span>
-                            Kusdom 購物袋<br>
-                            <small>創意商品選購區</small>
-                        </a>
-                    </div>
+                <div class="menu-section">
+                    <h2 class="section-title">📱 社群連結</h2>
+                    <ul class="menu-items">
+                        <li class="menu-item">
+                            <a href="https://www.instagram.com/camsy651" target="_blank" rel="noopener noreferrer">
+                                <span class="menu-emoji">📸</span>
+                                Instagram 視覺套餐
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="https://www.facebook.com/yk1987" target="_blank" rel="noopener noreferrer">
+                                <span class="menu-emoji">👥</span>
+                                Facebook 社群廳
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="https://x.com/3dmaxcat" target="_blank" rel="noopener noreferrer">
+                                <span class="menu-emoji">🐵</span>
+                                X 猩猩特調
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="https://x.com/1987Yk1" target="_blank" rel="noopener noreferrer">
+                                <span class="menu-emoji">🦋</span>
+                                X 蘇仙茶點
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="menu-section">
+                    <h2 class="section-title">🎨 創作天地</h2>
+                    <ul class="menu-items">
+                        <li class="menu-item">
+                            <a href="https://store.line.me/stickershop/author/2773269" target="_blank" rel="noopener noreferrer">
+                                <span class="menu-emoji">💬</span>
+                                Line 貼圖小食
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="https://bird33a.pixnet.net/blog" target="_blank" rel="noopener noreferrer">
+                                <span class="menu-emoji">🎵</span>
+                                音樂部落格
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="https://www.pinterest.com/3dmaxcat" target="_blank" rel="noopener noreferrer">
+                                <span class="menu-emoji">📌</span>
+                                Pinterest 拼盤
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="https://giphy.com/bird33a" target="_blank" rel="noopener noreferrer">
+                                <span class="menu-emoji">🎬</span>
+                                Giphy 動圖屋
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="https://kusdom.com/poppeak" target="_blank" rel="noopener noreferrer">
+                                <span class="menu-emoji">🛍️</span>
+                                Kusdom 購物袋
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            
-            <div class="menu-footer">
-                <p>🍴 感謝您的光臨！每一份創作都是用心調製 🍴</p>
-                <p>這裡是我所有美味創意的匯聚點！</p>
-            </div>
+        </div>
+        
+        <div class="menu-footer">
+            <p>🍴 感謝您的光臨！每一份創作都是用心調製 🍴</p>
+            <p>這裡是我所有美味創意的匯聚點！</p>
         </div>
     </div>
 </body>
