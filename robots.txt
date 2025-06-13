@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cmsy651.github.io/bird33a/sitemap-index.xml
+Sitemap: https://cmsy651.github.io/bird33a/sitemap.xml
